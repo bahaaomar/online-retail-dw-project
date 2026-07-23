@@ -25,7 +25,7 @@ CREATE TABLE gold.dim_date (
     IsWeekend   BIT
 );
 GO
-
+-- Populate Date Dimension Table (gold.dim_date)
 INSERT INTO gold.dim_date
 SELECT DISTINCT
     CAST(CONVERT(VARCHAR(8), InvoiceDate, 112) AS INT),
@@ -51,7 +51,7 @@ CREATE TABLE gold.dim_customer (
     Country     NVARCHAR(50)
 );
 GO
-
+-- Populate Customer Dimension Table (gold.dim_customer)
 INSERT INTO gold.dim_customer (CustomerID, Country)
 SELECT CustomerID, MAX(Country)
 FROM silver.online_retail_II
@@ -67,7 +67,7 @@ CREATE TABLE gold.dim_product (
     Description NVARCHAR(200)
 );
 GO
-
+-- Populate Product Dimension Table (gold.dim_product)
 INSERT INTO gold.dim_product (StockCode, Description)
 SELECT StockCode, MAX(Description)
 FROM silver.online_retail_II
@@ -90,7 +90,7 @@ CREATE TABLE gold.fact_sales (
     TotalAmount DECIMAL(12,2)
 );
 GO
-
+-- Load data into Gold Fact Table (gold.fact_sales)
 INSERT INTO gold.fact_sales (Invoice, ProductKey, CustomerKey, DateKey, Quantity, Price, TotalAmount)
 SELECT
     s.Invoice, p.ProductKey, c.CustomerKey,
