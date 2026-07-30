@@ -1,126 +1,126 @@
-# تقرير تكنيكال – Online Retail Data Warehouse Project
+# Technical Report – Online Retail Data Warehouse Project
 
-## 1. مقدمة
+## 1. Introduction
 
-المشروع ده عبارة عن داتا ويرهاوس (Data Warehouse) متكامل لبيانات مبيعات شركة أونلاين ريتيل (Online Retail II)، اتبنى على إس كيو إل سيرفر (SQL Server) وبيتصل بـ باور بي آي (Power BI) لعمل داشبورد تحليلي. الأركيتيكتشر (Architecture) المستخدمة هي الميداليون أركيتيكتشر (Medallion Architecture)، يعني الداتا بتعدي على تلات ليرز: البرونز ليير (Bronze Layer)، السيلفر ليير (Silver Layer)، والجولد ليير (Gold Layer)، لحد ما توصل لصورة نضيفة وجاهزة للتحليل بصيغة ستار سكيما (Star Schema).
+This project is a complete Data Warehouse for the sales data of an online retail company (Online Retail II), built on SQL Server and connected to Power BI to create an analytical dashboard. The architecture used is the Medallion Architecture, meaning the data passes through three layers: the Bronze Layer, the Silver Layer, and the Gold Layer, until it reaches a clean, analysis-ready state in Star Schema format.
 
-التقرير ده بيوثّق تلات حاجات أساسية في المشروع:
-- الـ هاي ليفل أركيتيكتشر (High Level Architecture) بتاعة النظام.
-- الداتا فلو / الداتا لينيج (Data Flow / Data Lineage) يعني إزاي الداتا بتتحرك من مصدرها لحد آخر نقطة.
-- الداتا موديل (Data Model) بصيغة ستار سكيما في الجولد ليير.
+This report documents three core aspects of the project:
+- The system's High Level Architecture.
+- The Data Flow / Data Lineage, i.e., how data moves from its source to the final consumption point.
+- The Data Model in Star Schema format in the Gold Layer.
 
 ---
 
-## 2. الـ هاي ليفل أركيتيكتشر (High Level Architecture)
+## 2. High Level Architecture
 
-### 2.1 السورسز (Sources)
+### 2.1 Sources
 
-| البند | التفاصيل |
+| Item | Details |
 |---|---|
 | Object Type | CSV File |
 | Interface | File Path |
 | Load Method | Bulk Insert |
-| اسم الملف | online_retail_II.csv |
+| File Name | online_retail_II.csv |
 
-الداتا الأصلية بتيجي من ملف سي إس في (CSV File) واحد اسمه `online_retail_II.csv`، وبيتحمّل بطريقة البالك إنسيرت (Bulk Insert) عن طريق الفايل باث (File Path) بتاعه.
+The original data comes from a single CSV file named `online_retail_II.csv`, loaded using the Bulk Insert method via its file path.
 
-### 2.2 البرونز ليير (Bronze Layer)
+### 2.2 Bronze Layer
 
-الهدف من البرونز ليير إنه يحتفظ بنسخة طبق الأصل من الداتا الخام (Raw Data) زي ما هي، من غير أي تعديل أو تنظيف.
+The purpose of the Bronze Layer is to keep an exact copy of the raw data as-is, without any modification or cleaning.
 
-| البند | التفاصيل |
+| Item | Details |
 |---|---|
-| اسم الجدول | bronze.online_retail_II |
+| Table Name | bronze.online_retail_II |
 | Object Type | Table |
 | Load | Bulk Insert (Full Load) + Truncate & Insert |
-| Transformations | لا يوجد – No Transformations |
+| Transformations | None |
 | Data Model | None (as-is) |
-| Data Type | كل الأعمدة NVARCHAR(MAX) |
+| Data Type | All columns NVARCHAR(MAX) |
 
-- اللود بيتم عن طريق ستورد بروسيجر (Stored Procedure) بيعمل تروانكيت اند إنسيرت (Truncate & Insert) على الجدول قبل كل تحميل جديد.
-- بيتعمل شوية داتا كواليتي تشيكس (Data Quality Checks) على مستوى البرونز، منها:
-  - دوبليكيت إنفويس تشيك (Duplicate Invoice Check)
-  - نُل / ميسينج فاليوز (Null / Missing Values)
-  - إنفاليد كوانتيتي اند برايس (Invalid Quantity & Price)
-  - كانسلد إنفويسز (Cancelled Invoices) بنسبة C%
-  - إكسترا سبيسز / تريمينج (Extra Spaces / Trimming)
+- Loading is done through a Stored Procedure that performs Truncate & Insert on the table before every new load.
+- Several Data Quality Checks are performed at the Bronze level, including:
+  - Duplicate Invoice Check
+  - Null / Missing Values
+  - Invalid Quantity & Price
+  - Cancelled Invoices marked with a C% prefix
+  - Extra Spaces / Trimming
 
-### 2.3 السيلفر ليير (Silver Layer)
+### 2.3 Silver Layer
 
-في السيلفر ليير بتتعمل عمليات التنضيف والتوحيد (Cleaning & Standardization) على الداتا الجاية من البرونز.
+In the Silver Layer, cleaning and standardization operations are performed on the data coming from the Bronze layer.
 
-| البند | التفاصيل |
+| Item | Details |
 |---|---|
-| اسم الجدول | silver.online_retail_II |
+| Table Name | silver.online_retail_II |
 | Object Type | Table |
 | Load | Full Load (Insert) |
 | Data Model | None (as-is) |
 
-الترانسفورميشنز (Transformations) اللي بتتعمل في الليير ده:
-- داتا كلينزينج (Data Cleansing) باستخدام TRIM
-- تايب كاستينج (Type Casting) باستخدام TRY_CAST
-- ديدوبليكيشن (Deduplication) باستخدام DISTINCT
-- كانسلد إنفويس لوجيك (Cancelled Invoice Logic)
-- هاندلينج نُلز (Handling NULLs) لعمود الـ Customer ID
+The transformations applied in this layer:
+- Data Cleansing using TRIM
+- Type Casting using TRY_CAST
+- Deduplication using DISTINCT
+- Cancelled Invoice Logic
+- Handling NULLs for the Customer ID column
 
-اللود هنا كمان بيتم عن طريق ستورد بروسيجر مستقل.
+Loading here is also performed through a separate Stored Procedure.
 
-### 2.4 الجولد ليير (Gold Layer)
+### 2.4 Gold Layer
 
-الجولد ليير هو الليير النهائي الجاهز للاستهلاك (Business-Ready Data)، وفيه الداتا بتتحول لصيغة ستار سكيما.
+The Gold Layer is the final, business-ready layer, where the data is transformed into Star Schema format.
 
-| البند | التفاصيل |
+| Item | Details |
 |---|---|
-| الأوبجيكتس (Objects) | dim_date, dim_customer, dim_product, fact_sales, vw_fact_sales |
+| Objects | dim_date, dim_customer, dim_product, fact_sales, vw_fact_sales |
 | Object Type | Tables & View |
-| Load | Full Load (للفاكت والديمنشنز) + No Load (للفيو) |
+| Load | Full Load (for the fact and dimension tables) + No Load (for the view) |
 | Data Model | Star Schema |
 
-الترانسفورميشنز في الجولد ليير:
-- داتا إنتيجريشن (Data Integration) عن طريق الجوينز (Joins)
-- سوروجيت كيز (Surrogate Keys – SK)
-- بيزنس لوجيك (Business Logic) زي IsCancelled و TotalAmount
-- أننون ممبرز (Unknown Members) بقيمة -1
+Transformations in the Gold Layer:
+- Data Integration via Joins
+- Surrogate Keys (SK)
+- Business Logic such as IsCancelled and TotalAmount
+- Unknown Members with a value of -1
 
-اللود والـ فيوز (Views & Stored Procedure) هنا بيغطوا كل من التابلز والفيو الخاص بالتقارير (vw_fact_sales).
+The load and views (Views & Stored Procedure) here cover both the tables and the reporting view (vw_fact_sales).
 
-### 2.5 الكونسيوم ليير (Consume)
+### 2.5 Consume Layer
 
-| الأداة | الاستخدام |
+| Tool | Usage |
 |---|---|
-| باور بي آي (Power BI) | BI & Reporting |
-| إس إس إم إس (SSMS) | Ad-Hoc SQL Queries |
+| Power BI | BI & Reporting |
+| SSMS | Ad-Hoc SQL Queries |
 
-الداتا في الجولد ليير بتتستهلك من ناحيتين: عن طريق باور بي آي لعمل الداشبوردز والتقارير، وعن طريق إس إس إم إس لعمل استعلامات مباشرة (Ad-Hoc Queries) وقت الحاجة.
+The data in the Gold Layer is consumed in two ways: through Power BI to build dashboards and reports, and through SSMS to run Ad-Hoc Queries when needed.
 
 ---
 
-## 3. الداتا فلو / الداتا لينيج (Data Flow / Data Lineage)
+## 3. Data Flow / Data Lineage
 
-الداتا لينيج (Data Lineage) بيوضّح إزاي كل عنصر داتا بيتحرك من مصدره لحد آخر نقطة استهلاك، وده بيساعد في تتبع مصدر أي رقم في التقرير النهائي.
+Data Lineage shows how each piece of data moves from its source to its final consumption point, which helps trace the origin of any figure in the final report.
 
-مسار الداتا بيمشي بالشكل ده:
+The data path flows as follows:
 
-1. **online_retail_II.csv** (سي إس في فايل) ⟶
-2. **bronze.online_retail_II** (البرونز ليير – تحميل خام زي ما هو) ⟶
-3. **silver.online_retail_II** (السيلفر ليير – تنضيف وتوحيد) ⟶
-4. الجولد ليير، وفيه الداتا بتتقسم على 4 أوبجيكتس رئيسية:
+1. **online_retail_II.csv** (CSV file) ⟶
+2. **bronze.online_retail_II** (Bronze Layer – loaded raw, as-is) ⟶
+3. **silver.online_retail_II** (Silver Layer – cleaned and standardized) ⟶
+4. Gold Layer, where the data is split into 4 main objects:
    - **fact_sales**
    - **dim_customer**
    - **dim_product**
    - **dim_date**
 
-يعني كل ريكورد بيبدأ من ملف السي إس في، يعدي على البرونز من غير أي تعديل، بعدين يتنضف في السيلفر، وفي الآخر يتقسم في الجولد لفاكت وديمنشنز جاهزين للتحليل.
+In other words, every record starts from the CSV file, passes through Bronze without any modification, gets cleaned in Silver, and finally gets split in Gold into fact and dimension tables ready for analysis.
 
 ---
 
-## 4. الداتا موديل (Data Model – Star Schema)
+## 4. Data Model (Star Schema)
 
-الستار سكيما (Star Schema) في الجولد ليير بتتكون من جدول فاكت واحد (Fact Table) وتلات ديمنشن تابلز (Dimension Tables) متصلين بيه.
+The Star Schema in the Gold Layer consists of one Fact Table and three Dimension Tables connected to it.
 
-### 4.1 gold.fact_sales (الفاكت تيبل)
+### 4.1 gold.fact_sales (Fact Table)
 
-| النوع | اسم العمود |
+| Type | Column Name |
 |---|---|
 | PK | sk_sales |
 | — | Invoice |
@@ -132,11 +132,11 @@
 | — | TotalAmount |
 | — | IsCancelled |
 
-الفاكت تيبل ده متصل بالتلات ديمنشنز عن طريق تلات فورين كيز (Foreign Keys): sk_product و sk_customer و sk_date.
+This fact table is connected to the three dimensions via three Foreign Keys: sk_product, sk_customer, and sk_date.
 
 ### 4.2 gold.dim_customer
 
-| النوع | اسم العمود |
+| Type | Column Name |
 |---|---|
 | PK | sk_customer |
 | — | CustomerID |
@@ -144,7 +144,7 @@
 
 ### 4.3 gold.dim_product
 
-| النوع | اسم العمود |
+| Type | Column Name |
 |---|---|
 | PK | sk_product |
 | — | StockCode |
@@ -152,7 +152,7 @@
 
 ### 4.4 gold.dim_date
 
-| النوع | اسم العمود |
+| Type | Column Name |
 |---|---|
 | PK | sk_date |
 | — | InvoiceDate |
@@ -165,20 +165,20 @@
 | — | WeekOfYear |
 | — | IsWeekend |
 
-### 4.5 البيزنس لوجيك (Business Logic Notes)
+### 4.5 Business Logic Notes
 
-في شوية قواعد بيزنس لوجيك (Business Logic) اتطبقت على مستوى الجولد ليير:
+Several business logic rules were applied at the Gold Layer level:
 
 - **Sales Calculation**: `TotalAmount = Quantity * Price`
 - **IsCancelled**:
-  - 1 = فاتورة ملغية (Cancelled Invoice) لما الـ Invoice يبدأ بحرف C
-  - 0 = عملية بيع عادية (Normal Sale)
+  - 1 = Cancelled Invoice, when the Invoice starts with the letter C
+  - 0 = Normal Sale
 - **IsWeekend**:
-  - 1 = ويكند (Weekend) يعني يوم سبت أو حد
-  - 0 = يوم شغل عادي (Weekday)
+  - 1 = Weekend, meaning Saturday or Sunday
+  - 0 = regular Weekday
 
 ---
 
-## 5. الخلاصة (Conclusion)
+## 5. Conclusion
 
-المشروع بيطبّق الميداليون أركيتيكتشر (Medallion Architecture) بشكل كامل، بادئ من ملف سي إس في خام، عدي على برونز ليير للحفظ زي ما هو، سيلفر ليير للتنضيف والتوحيد، وصولاً لجولد ليير بصيغة ستار سكيما جاهزة للاستهلاك عن طريق باور بي آي أو إس إس إم إس. الديزاين ده بيوفّر تتبع كامل للداتا لينيج (Data Lineage)، وبيسهّل عملية الصيانة (Maintenance) والتوسع (Scalability) في المستقبل.
+The project fully implements the Medallion Architecture, starting from a raw CSV file, passing through the Bronze layer for as-is storage, the Silver layer for cleaning and standardization, and reaching the Gold layer in Star Schema format, ready for consumption via Power BI or SSMS. This design provides full Data Lineage traceability and facilitates future Maintenance and Scalability.
