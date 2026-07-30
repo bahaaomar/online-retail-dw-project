@@ -1,122 +1,118 @@
 # online-retail-dw-project
 
-# تقرير تحليلي: تعزيز الإيرادات وتحسين أداء المبيعات عبر البيانات
+# Analytical Report: Boosting Revenue and Improving Sales Performance Through Data
 
-## 1. المشكلة الرئيسية والأهداف التحليلية
+## 1. Core Problem and Analytical Objectives
 
-تواجه الشركات تحديات مستمرة في زيادة الإيرادات وتحسين أداء المبيعات في بيئة تنافسية متغيرة. يكمن الحل في فهم عميق للعملاء، المنتجات، التوقيتات، والأسواق. يهدف هذا التقرير إلى تقديم إطار عمل تحليلي يربط بين جودة البيانات ورؤى قابلة للتنفيذ لتحقيق نمو مستدام في المبيعات.
+Companies face ongoing challenges in growing revenue and improving sales performance within a constantly changing competitive environment. The solution lies in a deep understanding of customers, products, timing, and markets. This report aims to provide an analytical framework that connects data quality to actionable insights in order to achieve sustainable sales growth.
 
-## 2. نظرة عامة على بيانات التجزئة (Online Retail II)
+## 2. Overview of the Retail Dataset (Online Retail II)
 
-تم تحليل مجموعة بيانات شاملة لعمليات التجزئة ، والتي توفر أساساً قوياً لاستخلاص الرؤى. تتضمن هذه البيانات:
+A comprehensive retail transactions dataset was analyzed, providing a solid foundation for deriving insights. This data includes:
 
-- **حجم البيانات:** أكثر من 1,067,371 سجل معاملة.
-- **الفترة الزمنية:** تغطي العمليات التجارية من ديسمبر 2009 إلى ديسمبر 2011.
-- **الأعمدة الرئيسية:** تشمل رقم الفاتورة، رمز المنتج، الوصف، الكمية، تاريخ الفاتورة، السعر، معرف العميل، والدولة.
-- **المؤشرات الأولية:** تم تحديد 53,628 فاتورة فريدة، 5,305 منتج مختلف، 5,942 عميل مسجل، و 43 دولة مشاركة في المعاملات.
-- **أعلى الدول إيراداً:** المملكة المتحدة تتصدر القائمة بإيرادات تقديرية تبلغ حوالي 16.3 مليون، تليها أيرلندا، هولندا، ألمانيا، وفرنسا.
-- **أعلى المنتجات مبيعاً (بالكمية):** منتجات مثل WORLD WAR 2 GLIDERS ASSTD DESIGNS و WHITE HANGING HEART T-LIGHT HOLDER.
+- **Data Volume:** More than 1,067,371 transaction records.
+- **Time Period:** Covers business operations from December 2009 to December 2011.
+- **Key Columns:** Include Invoice Number, Stock Code, Description, Quantity, Invoice Date, Price, Customer ID, and Country.
+- **Initial Indicators:** 53,628 unique invoices, 5,305 distinct products, 5,942 registered customers, and 43 countries involved in transactions were identified.
+- **Top Revenue Countries:** The United Kingdom leads with estimated revenue of about 16.3 million, followed by Ireland, the Netherlands, Germany, and France.
+- **Top Selling Products (by Quantity):** Products such as WORLD WAR 2 GLIDERS ASSTD DESIGNS and WHITE HANGING HEART T-LIGHT HOLDER.
 
-## 3. منهجية معالجة البيانات: بنية الميدالية (Medallion Architecture)
+## 3. Data Processing Methodology: Medallion Architecture
 
-تُعد بنية الميدالية نهجاً تنظيمياً للبيانات يهدف إلى تحسين جودة البيانات وهيكلها أثناء انتقالها عبر طبقات مختلفة، مما يضمن تحويل البيانات الخام إلى رؤى قيمة.
+Medallion Architecture is a data organization approach aimed at improving data quality and structure as it moves through different layers, ensuring the transformation of raw data into valuable insights.
 
-### أ. الطبقة البرونزية (Bronze Layer): البيانات الخام
+### A. Bronze Layer: Raw Data
 
-- **المفهوم:** هي الطبقة الأولى التي تستقبل البيانات كما هي من مصادرها الأصلية، دون أي تغيير أو تنظيف. الهدف الرئيسي هو الاحتفاظ بنسخة طبق الأصل من البيانات التاريخية كـ "سجل لا يتغير" (Immutable Log).
-- **الدور:** توفر نقطة استعادة للبيانات الأصلية وتضمن الشفافية الكاملة حول مصدر البيانات.
-- **الاستخدام:** تستخدم بشكل أساسي من قبل مهندسي البيانات لضمان استيعاب جميع البيانات الواردة.
+- **Concept:** The first layer that receives data exactly as it comes from its original sources, without any modification or cleaning. The main goal is to keep an exact copy of the historical data as an "Immutable Log."
+- **Role:** Provides a recovery point for the original data and ensures full transparency about the data source.
+- **Usage:** Used primarily by data engineers to ensure all incoming data is ingested.
 
-### ب. الطبقة الفضية (Silver Layer): البيانات المنقحة
+### B. Silver Layer: Refined Data
 
-- **المفهوم:** في هذه الطبقة، يتم تنظيف البيانات الخام من الطبقة البرونزية، وتوحيدها، وتصحيح أنواعها، ومعالجة القيم المفقودة أو غير المنطقية. يتم تطبيق قواعد العمل والتحقق من الجودة.
-- **الدور:** تحويل البيانات إلى "مصدر حقيقي" (Source of Truth) موثوق به للتحليلات، حيث تكون البيانات منظمة ومتسقة.
-- **الاستخدام:** يستخدمها محللو البيانات وعلماء البيانات لإجراء تحليلات تفصيلية وبناء النماذج.
+- **Concept:** In this layer, raw data from the Bronze layer is cleaned, standardized, has its types corrected, and missing or illogical values are handled. Business rules and quality checks are applied.
+- **Role:** Transforms the data into a trusted "Source of Truth" for analytics, where the data is organized and consistent.
+- **Usage:** Used by data analysts and data scientists to perform detailed analyses and build models.
 
-### ج. الطبقة الذهبية (Gold Layer): البيانات الجاهزة للأعمال
+### C. Gold Layer: Business-Ready Data
 
-- **المفهوم:** هي الطبقة النهائية التي تحتوي على بيانات مجمعة ومحسوبة مسبقاً، مصممة خصيصاً للإجابة على أسئلة تجارية محددة. تكون هذه البيانات جاهزة للاستهلاك المباشر من قبل لوحات المعلومات (Dashboards) والتقارير وتطبيقات الأعمال.
-- **الدور:** توفير رؤى سريعة ودقيقة لدعم اتخاذ القرارات الاستراتيجية والتشغيلية.
-- **الاستخدام:** يستخدمها مديرو الأعمال، أصحاب المصلحة، ولوحات المعلومات التفاعلية.
+- **Concept:** The final layer containing pre-aggregated and pre-calculated data, specifically designed to answer specific business questions. This data is ready for direct consumption by dashboards, reports, and business applications.
+- **Role:** Provides fast and accurate insights to support strategic and operational decision-making.
+- **Usage:** Used by business managers, stakeholders, and interactive dashboards.
 
-## 4. ربط بنية الميدالية بأسئلة الداش بورد
+## 4. Connecting Medallion Architecture to Dashboard Questions
 
-تُعد بنية الميدالية العمود الفقري الذي يمكّن لوحات المعلومات من تقديم رؤى دقيقة وفي الوقت المناسب. كل طبقة تخدم غرضاً حيوياً في هذه العملية:
+Medallion Architecture is the backbone that enables dashboards to deliver accurate, timely insights. Each layer serves a vital purpose in this process:
 
-| الطبقة | دورها في الإجابة على أسئلة الداش بورد |
+| Layer | Its Role in Answering Dashboard Questions |
 |---|---|
-| **البرونزية** | توفر الأساس الخام الذي يحتوي على جميع التفاصيل اللازمة التي قد نحتاجها للتحقق أو إعادة المعالجة. |
-| **الفضية** | تنظف وتجهز البيانات، مما يسمح بحساب المقاييس الأساسية مثل إجمالي المبيعات، معدل قيمة الطلب، وتحديد العملاء والمنتجات. |
-| **الذهبية** | توفر الجداول المجمعة والمحسوبة مسبقاً التي تغذي لوحات المعلومات مباشرةً، مما يضمن سرعة الاستجابة والدقة في الإجابات على أسئلة الداش بورد المعقدة مثل اتجاهات المبيعات الشهرية أو أفضل العملاء. |
+| **Bronze** | Provides the raw foundation containing all the details we might need for verification or reprocessing. |
+| **Silver** | Cleans and prepares the data, enabling the calculation of core metrics such as total sales, average order value, and identifying customers and products. |
+| **Gold** | Provides the pre-aggregated, pre-calculated tables that feed dashboards directly, ensuring fast response times and accuracy when answering complex dashboard questions such as monthly sales trends or top customers. |
 
-## 5. أسئلة الداش بورد والأهداف الاستراتيجية
+## 5. Dashboard Questions and Strategic Objectives
 
-لتحقيق أقصى استفادة من البيانات وزيادة الإيرادات وتحسين أداء المبيعات، يجب أن تركز لوحة المعلومات على الإجابة على الأسئلة التحليلية التالية، والتي بدورها تكشف عن أهداف ومشاكل استراتيجية:
+To maximize the value extracted from the data and increase revenue and sales performance, the dashboard should focus on answering the following analytical questions, which in turn reveal strategic goals and problems:
 
-### أ. الأداء العام للمبيعات (Overall Sales Performance)
+### A. Overall Sales Performance
 
-- **السؤال:** ما هو الأداء العام للمبيعات؟
-- **المقاييس الرئيسية (KPI Cards):**
-  - إجمالي المبيعات (Total Sales)
-  - عدد العملاء (Total Customers)
-  - عدد الطلبات (Total Orders)
-  - عدد المنتجات (Total Products)
-  - إجمالي الكمية المباعة (Total Quantity Sold)
-  - متوسط قيمة الطلب (Average Order Value)
-- **الأهداف/المشاكل المستنتجة:** تقييم الصحة المالية الشاملة للشركة، فهم حجم النشاط التجاري، وتحديد مؤشرات الأداء الرئيسية التي تحتاج إلى تحسين.
+- **Question:** What is the overall sales performance?
+- **Key Metrics (KPI Cards):**
+  - Total Sales
+  - Total Customers
+  - Total Orders
+  - Total Products
+  - Total Quantity Sold
+  - Average Order Value
+- **Derived Goals/Problems:** Assessing the company's overall financial health, understanding the scale of business activity, and identifying key performance indicators that need improvement.
 
-### ب. توزيع المبيعات حسب الدول (Sales by Country)
+### B. Sales by Country
 
-- **السؤال:** كيف تتوزع المبيعات حسب الدول؟
-- **التمثيل البياني المقترح:** مخطط دائري (Donut Chart)
-- **سؤال الأعمال:** أي الدول تحقق أكبر نسبة من إجمالي المبيعات؟
-- **الأهداف/المشاكل المستنتجة:** تحديد الأسواق الجغرافية الأكثر ربحية، فهم التركيز الجغرافي للمبيعات، وتوجيه استراتيجيات التوسع أو تعزيز التواجد في أسواق معينة.
+- **Question:** How are sales distributed by country?
+- **Suggested Chart Type:** Donut Chart
+- **Business Question:** Which countries generate the largest share of total sales?
+- **Derived Goals/Problems:** Identifying the most profitable geographic markets, understanding the geographic concentration of sales, and guiding expansion strategies or strengthening presence in specific markets.
 
-### ج. تطور المبيعات عبر الزمن (Sales Trend Over Time)
+### C. Sales Trend Over Time
 
-- **السؤال:** كيف تطورت المبيعات عبر الزمن؟
-- **التمثيل البياني المقترح:** مخطط عمودي مكدس (Stacked Column Chart)
-- **سؤال الأعمال:** كيف تغيرت المبيعات شهريًا وسنويًا؟
-- **الأهداف/المشاكل المستنتجة:** تحديد الاتجاهات الموسمية والدورية في المبيعات، التنبؤ بالطلب المستقبلي، وتخطيط الحملات التسويقية والعروض الترويجية في الأوقات المناسبة.
+- **Question:** How have sales evolved over time?
+- **Suggested Chart Type:** Stacked Column Chart
+- **Business Question:** How did sales change on a monthly and yearly basis?
+- **Derived Goals/Problems:** Identifying seasonal and cyclical trends in sales, forecasting future demand, and planning marketing campaigns and promotions at the right times.
 
-### د. أفضل العملاء (Top Customers)
+### D. Top Customers
 
-- **السؤال:** من هم أفضل العملاء؟
-- **التمثيل البياني المقترح:** مخطط شريطي أفقي (Horizontal Bar Chart)
-- **سؤال الأعمال:** من هم أعلى 10 عملاء من حيث قيمة المبيعات؟
-- **الأهداف/المشاكل المستنتجة:** تحديد العملاء ذوي القيمة العالية (High-Value Customers) للاحتفاظ بهم، تطوير برامج ولاء مخصصة، وفهم خصائص هؤلاء العملاء لتعميم النجاح.
+- **Question:** Who are the top customers?
+- **Suggested Chart Type:** Horizontal Bar Chart
+- **Business Question:** Who are the top 10 customers by sales value?
+- **Derived Goals/Problems:** Identifying High-Value Customers for retention, developing personalized loyalty programs, and understanding these customers' characteristics to replicate success.
 
-### هـ. تغير الطلبات مع مرور الوقت (Orders Over Time)
+### E. Orders Over Time
 
-- **السؤال:** كيف تتغير الطلبات مع مرور الوقت؟
-- **التمثيل البياني المقترح:** مخطط عمودي (Column Chart)
-- **سؤال الأعمال:** هل يزيد أو يقل عدد الطلبات خلال الأشهر؟
-- **الأهداف/المشاكل المستنتجة:** فهم ديناميكية الطلبات، تحديد فترات الذروة والانخفاض في عدد الطلبات، وتحسين إدارة العمليات اللوجستية وخدمة العملاء.
+- **Question:** How do orders change over time?
+- **Suggested Chart Type:** Column Chart
+- **Business Question:** Is the number of orders increasing or decreasing across months?
+- **Derived Goals/Problems:** Understanding order dynamics, identifying peak and low periods in order volume, and improving logistics management and customer service.
 
-### و. المنتجات الأكثر تحقيقًا للمبيعات (Top Selling Products)
+### F. Top Selling Products
 
-- **السؤال:** ما هي المنتجات الأكثر تحقيقًا للمبيعات؟
-- **التمثيل البياني المقترح:** مخطط شريطي أفقي (Horizontal Bar Chart)
-- **سؤال الأعمال:** ما أعلى المنتجات من حيث الإيرادات؟
-- **الأهداف/المشاكل المستنتجة:** تحديد المنتجات الرائجة لضمان توفرها، تحسين استراتيجيات التسعير والترويج، وتوجيه جهود تطوير المنتجات الجديدة.
+- **Question:** What are the top selling products?
+- **Suggested Chart Type:** Horizontal Bar Chart
+- **Business Question:** What are the top products by revenue?
+- **Derived Goals/Problems:** Identifying trending products to ensure availability, improving pricing and promotion strategies, and guiding new product development efforts.
 
-### ز. الدول الأكثر نشاطًا (Most Active Countries)
+### G. Most Active Countries
 
-- **السؤال:** ما هي الدول الأكثر نشاطًا؟
-- **التمثيل البياني المقترح:** مخطط شريطي أفقي (Horizontal Bar Chart)
-- **سؤال الأعمال:** أي الدول لديها أكبر عدد من العملاء أو الطلبات؟
-- **الأهداف/المشاكل المستنتجة:** تحديد الأسواق ذات القاعدة الجماهيرية الأكبر، توجيه الحملات التسويقية لزيادة التفاعل في هذه الدول، وفهم التوزيع الجغرافي للعملاء.
+- **Question:** What are the most active countries?
+- **Suggested Chart Type:** Horizontal Bar Chart
+- **Business Question:** Which countries have the largest number of customers or orders?
+- **Derived Goals/Problems:** Identifying markets with the largest customer base, directing marketing campaigns to increase engagement in these countries, and understanding the geographic distribution of customers.
 
-## 6. الأهداف الاستراتيجية المستنتجة لتحقيق النمو
+## 6. Derived Strategic Objectives for Achieving Growth
 
-بناءً على الإجابات على أسئلة الداش بورد، يمكن للشركة صياغة الأهداف الاستراتيجية التالية:
+Based on the answers to the dashboard questions, the company can formulate the following strategic objectives:
 
-1. **الاستهداف الذكي:** بناء حملات تسويقية تعتمد على بيانات دقيقة للعملاء والأسواق الأكثر ربحية.
-2. **التميز التشغيلي:** إدارة المخزون والعمليات بكفاءة بناءً على التوقعات الزمنية والموسمية للطلب.
-3. **تحسين الربحية:** إعادة تقييم المنتجات والأسعار بناءً على تحليل الأداء المالي المفصل لكل منتج.
-4. **النمو المستدام:** بناء علاقات طويلة الأمد مع العملاء الأكثر قيمة لضمان استقرار الإيرادات وزيادة ولائهم.
-5. **توسيع الحصة السوقية:** تحديد الأسواق الجغرافية الواعدة وتخصيص الموارد اللازمة للتوسع فيها.
-
-
-
-
+1. **Smart Targeting:** Build marketing campaigns based on accurate data about the most profitable customers and markets.
+2. **Operational Excellence:** Manage inventory and operations efficiently based on time-based and seasonal demand forecasts.
+3. **Profitability Improvement:** Reassess products and pricing based on detailed financial performance analysis for each product.
+4. **Sustainable Growth:** Build long-term relationships with the most valuable customers to ensure revenue stability and increase their loyalty.
+5. **Market Share Expansion:** Identify promising geographic markets and allocate the necessary resources to expand into them.
