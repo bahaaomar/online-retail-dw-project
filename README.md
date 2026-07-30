@@ -10,9 +10,9 @@ Companies face ongoing challenges in growing revenue and improving sales perform
 
 A comprehensive retail transactions dataset was analyzed, providing a solid foundation for deriving insights. This data includes:
 
-- **Data Volume:** More than 1,067,371 transaction records.
+- **Data Volume: More than 1,067,371 transaction records.
 - **Time Period:** Covers business operations from December 2009 to December 2011.
-- **Key Columns:** Include Invoice Number, Stock Code, Description, Quantity, Invoice Date, Price, Customer ID, and Country.
+- **Key Columns: Include Invoice Number, Stock Code, Description, Quantity, Invoice Date, Price, Customer ID, and Country.
 - **Initial Indicators:** 53,628 unique invoices, 5,305 distinct products, 5,942 registered customers, and 43 countries involved in transactions were identified.
 - **Top Revenue Countries:** The United Kingdom leads with estimated revenue of about 16.3 million, followed by Ireland, the Netherlands, Germany, and France.
 - **Top Selling Products (by Quantity):** Products such as WORLD WAR 2 GLIDERS ASSTD DESIGNS and WHITE HANGING HEART T-LIGHT HOLDER.
