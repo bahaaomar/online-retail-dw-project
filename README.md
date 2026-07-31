@@ -1,4 +1,4 @@
-## online-retail-dw-project
+# online-retail-dw-project
 
 # Analytical Report: Boosting Revenue and Improving Sales Performance Through Data
 
