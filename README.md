@@ -57,11 +57,11 @@ To maximize the value extracted from the data and increase revenue and sales per
 
 - **Question:** What is the overall sales performance?
 - **Key Metrics (KPI Cards):**
-  - Total Sales
+  - Total revenue
   - Total Customers
   - Total Orders
-  - Total Products
-  - Total Quantity Sold
+  - Average unit price
+  - Total Quantity 
   - Average Order Value
 - **Derived Goals/Problems:** Assessing the company's overall financial health, understanding the scale of business activity, and identifying key performance indicators that need improvement.
 
