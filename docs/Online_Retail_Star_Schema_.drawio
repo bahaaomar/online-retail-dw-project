@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="Electron" agent="Claude">
+  <diagram name="Data Model (Star Schema)" id="dm1">
+    <mxGraphModel dx="907" dy="793" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1050" pageHeight="750" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#1A237E;fillColor=#1A237E;fontSize=24;fontStyle=1;align=center;verticalAlign=middle;fontColor=#FFFFFF;shadow=1;" value="Data Model (Star Schema)" vertex="1">
+          <mxGeometry height="50" width="880" x="80" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="head_cust" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#616161;strokeColor=#616161;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#FFFFFF;fontFamily=Verdana;" value="gold.dim_customer" vertex="1">
+          <mxGeometry height="30" width="220" x="80" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="body_cust" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#BDBDBD;align=left;verticalAlign=top;spacing=0;strokeWidth=2;shadow=1;" value="&lt;table style='width:100%;border-collapse:collapse;font-family:Helvetica;'&gt;&lt;tr style='border-bottom:1px solid #999;'&gt;&lt;td style='width:34px;padding:3px 4px;font-size:10px;color:#666;'&gt;PK&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;font-weight:bold;text-decoration:underline;background:#eeeeee;'&gt;sk_customer&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;CustomerID&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;Country&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="72" width="220" x="80" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="head_fact" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FBC02D;strokeColor=#FBC02D;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#FFFFFF;fontFamily=Verdana;" value="gold.fact_sales" vertex="1">
+          <mxGeometry height="30" width="240" x="400" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="body_fact" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFDE7;strokeColor=#FBC02D;align=left;verticalAlign=top;spacing=0;strokeWidth=2;shadow=1;" value="&lt;table style='width:100%;border-collapse:collapse;font-family:Helvetica;'&gt;&lt;tr style='border-bottom:1px solid #999;'&gt;&lt;td style='width:34px;padding:3px 4px;font-size:10px;color:#666;'&gt;PK&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;font-weight:bold;text-decoration:underline;background:#eeeeee;'&gt;sk_sales&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;Invoice&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style='padding:3px 4px;font-size:10px;color:#666;'&gt;FK1&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;font-weight:bold;background:#eeeeee;'&gt;sk_product&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style='padding:3px 4px;font-size:10px;color:#666;'&gt;FK2&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;font-weight:bold;background:#eeeeee;'&gt;sk_customer&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style='padding:3px 4px;font-size:10px;color:#666;'&gt;FK3&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;font-weight:bold;background:#eeeeee;'&gt;sk_date&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;Quantity&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;Price&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;TotalAmount&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;IsCancelled&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="216" width="240" x="400" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="head_prod" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#616161;strokeColor=#616161;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#FFFFFF;fontFamily=Verdana;" value="gold.dim_product" vertex="1">
+          <mxGeometry height="30" width="220" x="740" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="body_prod" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#BDBDBD;align=left;verticalAlign=top;spacing=0;strokeWidth=2;shadow=1;" value="&lt;table style='width:100%;border-collapse:collapse;font-family:Helvetica;'&gt;&lt;tr style='border-bottom:1px solid #999;'&gt;&lt;td style='width:34px;padding:3px 4px;font-size:10px;color:#666;'&gt;PK&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;font-weight:bold;text-decoration:underline;background:#eeeeee;'&gt;sk_product&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;StockCode&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="72" width="220" x="740" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="head_date" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#616161;strokeColor=#616161;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#FFFFFF;fontFamily=Verdana;" value="gold.dim_date" vertex="1">
+          <mxGeometry height="30" width="240" x="400" y="396" as="geometry" />
+        </mxCell>
+        <mxCell id="body_date" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#BDBDBD;align=left;verticalAlign=top;spacing=0;strokeWidth=2;shadow=1;" value="&lt;table style='width:100%;border-collapse:collapse;font-family:Helvetica;'&gt;&lt;tr style='border-bottom:1px solid #999;'&gt;&lt;td style='width:34px;padding:3px 4px;font-size:10px;color:#666;'&gt;PK&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;font-weight:bold;text-decoration:underline;background:#eeeeee;'&gt;sk_date&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;InvoiceDate&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;DayNum&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;MonthNum&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;MonthName&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;QuarterNum&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;YearNum&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;DayName&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;WeekOfYear&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='padding:3px 4px;font-size:12px;'&gt;IsWeekend&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="240" width="240" x="400" y="426" as="geometry" />
+        </mxCell>
+        <mxCell id="e_cust_fact" edge="1" parent="1" source="body_cust" style="edgeStyle=none;html=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;strokeColor=#546E7A;strokeWidth=2;rounded=1;jumpStyle=arc;" target="body_fact">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="152" as="sourcePoint" />
+            <mxPoint x="400" y="224" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_prod_fact" edge="1" parent="1" source="body_prod" style="edgeStyle=none;html=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;strokeColor=#546E7A;strokeWidth=2;rounded=1;jumpStyle=arc;" target="body_fact">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="152" as="sourcePoint" />
+            <mxPoint x="640" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_date_fact" edge="1" parent="1" source="body_date" style="edgeStyle=none;html=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;strokeColor=#546E7A;exitX=0.5;exitY=0;entryX=0.5;entryY=1;strokeWidth=2;rounded=1;jumpStyle=arc;" target="body_fact">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note_sales" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;fillColor=#FAFAFA;strokeColor=#CFD8DC;rounded=1;dashed=0;fontFamily=Verdana;fontColor=#37474F;" value="&lt;u&gt;&lt;b&gt;Sales Calculation&lt;/b&gt;&lt;/u&gt;&lt;br&gt;TotalAmount = Quantity * Price" vertex="1">
+          <mxGeometry height="50" width="190" x="100" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="e_note_sales" edge="1" parent="1" source="note_sales" style="edgeStyle=none;html=1;endArrow=none;startArrow=none;dashed=0;strokeColor=#CFD8DC;exitX=1;exitY=0.5;entryX=0;entryY=0.72;fillColor=#FAFAFA;rounded=1;fontFamily=Verdana;fontSize=11;fontColor=#37474F;" target="body_fact">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note_cancel" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;fillColor=#FAFAFA;strokeColor=#CFD8DC;rounded=1;dashed=0;fontFamily=Verdana;fontColor=#37474F;" value="&lt;u&gt;&lt;b&gt;IsCancelled&lt;/b&gt;&lt;/u&gt;&lt;br&gt;- 1 = Cancelled Invoice (Invoice LIKE 'C%')&lt;br&gt;- 0 = Normal Sale" vertex="1">
+          <mxGeometry height="65" width="220" x="760" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="e_note_cancel" edge="1" parent="1" source="note_cancel" style="edgeStyle=none;html=1;endArrow=none;startArrow=none;dashed=0;strokeColor=#CFD8DC;exitX=0;exitY=0.5;entryX=1;entryY=0.94;fillColor=#FAFAFA;rounded=1;fontFamily=Verdana;fontSize=11;fontColor=#37474F;" target="body_fact">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note_weekend" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;fillColor=#FAFAFA;strokeColor=#CFD8DC;rounded=1;dashed=0;fontFamily=Verdana;fontColor=#37474F;" value="&lt;u&gt;&lt;b&gt;IsWeekend&lt;/b&gt;&lt;/u&gt;&lt;br&gt;- 1 = Weekend (Sat/Sun)&lt;br&gt;- 0 = Weekday" vertex="1">
+          <mxGeometry height="65" width="200" x="140" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="e_note_weekend" edge="1" parent="1" source="note_weekend" style="edgeStyle=none;html=1;endArrow=none;startArrow=none;dashed=0;strokeColor=#CFD8DC;exitX=1;exitY=0.5;entryX=0;entryY=0.95;fillColor=#FAFAFA;rounded=1;fontFamily=Verdana;fontSize=11;fontColor=#37474F;" target="body_date">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note_unknown" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#37474F;fillColor=#FAFAFA;strokeColor=#CFD8DC;rounded=1;dashed=0;fontFamily=Verdana;" value="&lt;u&gt;&lt;b&gt;Unknown Members&lt;/b&gt;&lt;/u&gt;&lt;br&gt;sk = -1 &amp;#8594; 'Unknown Customer' / 'Unknown Product'" vertex="1">
+          <mxGeometry height="35" width="240" x="400" y="690" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
