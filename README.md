@@ -119,7 +119,7 @@ To maximize the value extracted from the data, the dashboard visualizations expl
 * **Retention vs. Acquisition:** Customer retention is strong, with repeat customers accounting for 72.03% (4K) of the customer base compared to 27.97% (2K) one-time buyers.
 * **Low Concentration Risk:** Business risk is well diversified. The Top 10 Customers generate 13.51% ($2.7M) of overall revenue, while the Top 10 Products represent 9.97% ($1.99M) of total revenue, indicating strong reliance on a broader long-tail market.
 
-### Strategic Recommendations:
+### Strategic Recommendations :-
 
 1. **Supply Chain & Inventory Alignment for Q4:** Prepare supply chain operations, inventory buffer levels, and warehouse staffing starting in late Q3 to handle the 2x–3x demand surge demonstrated every year during October and November.
 2. **Targeted B2B Wholesale Expansion:** Leverage high Average Order Values in international regions (Netherlands, Singapore, Australia) by launching tailored B2B/wholesale catalogs and dedicated key account managers for these countries.
