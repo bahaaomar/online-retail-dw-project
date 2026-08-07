@@ -8,7 +8,7 @@ Companies face ongoing challenges in growing revenue and improving sales perform
 
 ## 2. Overview of the Retail Dataset (Online Retail II)
 
-A comprehensive retail transactions dataset was analyzed, providing a solid foundation for deriving insights. This data includes:
+A comprehensive retail transactions dataset was analyzed, providing a solid foundation for deriving insights. Thisdata includes:
 
 - **Data Volume: More than 1,067,371 transaction records.
 - **Time Period:** Covers business operations from December 2009 to December 2011.
