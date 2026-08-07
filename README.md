@@ -51,68 +51,78 @@ Medallion Architecture is the backbone that enables dashboards to deliver accura
 
 ## 5. Dashboard Questions and Strategic Objectives
 
-To maximize the value extracted from the data and increase revenue and sales performance, the dashboard should focus on answering the following analytical questions, which in turn reveal strategic goals and problems:
+To maximize the value extracted from the data, the dashboard visualizations explicitly address nine key questions extracted directly from the reporting interface:
 
-### A. Overall Sales Performance
+### A. Performance Overview
 
-- **Question:** What is the overall sales performance?
-- **Key Metrics (KPI Cards):**
-  - Total revenue
-  - Total Customers
-  - Total Orders
-  - Average unit price
-  - Total Quantity 
-  - Average Order Value
-- **Derived Goals/Problems:** Assessing the company's overall financial health, understanding the scale of business activity, and identifying key performance indicators that need improvement.
+* **Visual Question:** How do sales change over time?
+* **Key Metrics (KPI Cards):**
+* Total Revenue: $19.96M
+* Total Quantity: 11M
+* Total Orders: 40K
+* Total Customers: 6K
+* Average Unit Price: 4.07
+* Average Order Value: 504.85
 
-### B. Sales by Country
 
-- **Question:** How are sales distributed by country?
-- **Suggested Chart Type:** Donut Chart
-- **Business Question:** Which countries generate the largest share of total sales?
-- **Derived Goals/Problems:** Identifying the most profitable geographic markets, understanding the geographic concentration of sales, and guiding expansion strategies or strengthening presence in specific markets.
+* **Chart Visual:** Monthly Revenue Trend (Line Chart)
 
-### C. Sales Trend Over Time
+### B. Revenue Seasonality Analysis
 
-- **Question:** How have sales evolved over time?
-- **Suggested Chart Type:** Stacked Column Chart
-- **Business Question:** How did sales change on a monthly and yearly basis?
-- **Derived Goals/Problems:** Identifying seasonal and cyclical trends in sales, forecasting future demand, and planning marketing campaigns and promotions at the right times.
+* **Visual Question:** What are the top months by sales?
+* **Chart Visual:** Top 5 Revenue Months (Horizontal Bar Chart)
 
-### D. Top Customers
+### C. Revenue Drivers by Product
 
-- **Question:** Who are the top customers?
-- **Suggested Chart Type:** Horizontal Bar Chart
-- **Business Question:** Who are the top 10 customers by sales value?
-- **Derived Goals/Problems:** Identifying High-Value Customers for retention, developing personalized loyalty programs, and understanding these customers' characteristics to replicate success.
+* **Visual Question:** What are the top 10 products by revenue?
+* **Chart Visual:** Top 10 Products by Revenue (Horizontal Bar Chart)
 
-### E. Orders Over Time
+### D. Volume Drivers by Product
 
-- **Question:** How do orders change over time?
-- **Suggested Chart Type:** Column Chart
-- **Business Question:** Is the number of orders increasing or decreasing across months?
-- **Derived Goals/Problems:** Understanding order dynamics, identifying peak and low periods in order volume, and improving logistics management and customer service.
+* **Visual Question:** What are the top 10 products by quantity sold?
+* **Chart Visual:** Top 10 Products by Quantity (Horizontal Bar Chart)
 
-### F. Top Selling Products
+### E. Geographic Revenue Volume
 
-- **Question:** What are the top selling products?
-- **Suggested Chart Type:** Horizontal Bar Chart
-- **Business Question:** What are the top products by revenue?
-- **Derived Goals/Problems:** Identifying trending products to ensure availability, improving pricing and promotion strategies, and guiding new product development efforts.
+* **Visual Question:** What are the top countries by total revenue?
+* **Chart Visual:** Total Revenue by Country (Column Chart)
 
-### G. Most Active Countries
+### F. Geographic Order Value Distribution
 
-- **Question:** What are the most active countries?
-- **Suggested Chart Type:** Horizontal Bar Chart
-- **Business Question:** Which countries have the largest number of customers or orders?
-- **Derived Goals/Problems:** Identifying markets with the largest customer base, directing marketing campaigns to increase engagement in these countries, and understanding the geographic distribution of customers.
+* **Visual Question:** What are the top countries by Average Order Value?
+* **Chart Visual:** Average Order Value by Country (Horizontal Bar Chart)
 
-## 6. Derived Strategic Objectives for Achieving Growth
+### G. Customer Revenue Performance
 
-Based on the answers to the dashboard questions, the company can formulate the following strategic objectives:
+* **Visual Question:** Who are the top customers by revenue?
+* **Chart Visual:** Top 10 Customers by Revenue (Summary Data Table)
 
-1. **Smart Targeting:** Build marketing campaigns based on accurate data about the most profitable customers and markets.
-2. **Operational Excellence:** Manage inventory and operations efficiently based on time-based and seasonal demand forecasts.
-3. **Profitability Improvement:** Reassess products and pricing based on detailed financial performance analysis for each product.
-4. **Sustainable Growth:** Build long-term relationships with the most valuable customers to ensure revenue stability and increase their loyalty.
-5. **Market Share Expansion:** Identify promising geographic markets and allocate the necessary resources to expand into them...
+### H. Customer Retention & Repeat Purchase Rate
+
+* **Visual Question:** Do customers return to buy again?
+* **Chart Visual:** Repeat Customers vs. One-Time Customers (Donut Chart)
+
+### I. Sales Concentration & Dependence Risk
+
+* **Visual Question:** Do sales depend on a limited number of customers or products?
+* **Chart Visuals:** Customer Revenue Concentration & Product Revenue Concentration (Donut Charts)
+
+---
+
+## 6. Analytical Insights and Strategic Recommendations
+
+### Key Insights derived from Dashboard Analytics:
+
+* **Revenue Seasonality & Slicing:** Sales demonstrate severe seasonal spikes during Q4 of each year, hitting peak revenue months in November 2011 ($1.50M) and November 2010 ($1.46M). Mid-year months experience noticeable dips (e.g., $0.52M in February 2011).
+* **Product Performance Disparity:** `REGENCY CAKESTAND 3 TIER` generates the highest revenue ($325K), while `WORLD WAR 2 GLIDERS ASSTD DESIGNS` commands the largest volume sold (105K units). Products like `WHITE HANGING HEART T-LIGHT HOLDER` and `RED RETROSPOT JUMBO BAG` act as core anchors, performing strongly in both sales revenue and overall volume.
+* **Geographic Market Dynamics:** The United Kingdom accounts for the massive majority of aggregate revenue ($16.9M). However, international markets lead significantly in transaction size per order, with the Netherlands ($2,410) and Singapore ($2,302) recording the highest Average Order Values (AOV).
+* **Retention vs. Acquisition:** Customer retention is strong, with repeat customers accounting for 72.03% (4K) of the customer base compared to 27.97% (2K) one-time buyers.
+* **Low Concentration Risk:** Business risk is well diversified. The Top 10 Customers generate 13.51% ($2.7M) of overall revenue, while the Top 10 Products represent 9.97% ($1.99M) of total revenue, indicating strong reliance on a broader long-tail market.
+
+### Strategic Recommendations:
+
+1. **Supply Chain & Inventory Alignment for Q4:** Prepare supply chain operations, inventory buffer levels, and warehouse staffing starting in late Q3 to handle the 2x–3x demand surge demonstrated every year during October and November.
+2. **Targeted B2B Wholesale Expansion:** Leverage high Average Order Values in international regions (Netherlands, Singapore, Australia) by launching tailored B2B/wholesale catalogs and dedicated key account managers for these countries.
+3. **VIP Loyalty & Retention Programs:** Implement dedicated loyalty management workflows and VIP account benefits for top accounts (e.g., Customer IDs 18102, 14646, 14156) to ensure consistent re-ordering patterns.
+4. **Re-engagement Campaigns for One-Time Buyers:** Build automated post-purchase email series and targeted incentives to convert the 27.97% one-time buyers into repeat buyers.
+5. **Product Bundling Strategy:** Bundle high-volume/lower-price drivers (e.g., WWII Gliders, Cake Cases) with top-revenue drivers (e.g., Regency Cakestand) to elevate basket sizes across retail segments.
